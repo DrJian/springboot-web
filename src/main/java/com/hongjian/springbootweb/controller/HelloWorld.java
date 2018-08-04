@@ -1,6 +1,7 @@
 package com.hongjian.springbootweb.controller;
 
 import com.hongjian.springbootweb.dal.mapper.UserMapper;
+import com.hongjian.springbootweb.dal.mapper.UserMapperWithoutXml;
 import com.hongjian.springbootweb.model.ConfData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,12 @@ public class HelloWorld {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private UserMapperWithoutXml userMapperWithoutXml;
+
     @RequestMapping("/hello")
     public String hello() {
-        return "hello youzan !" + this.user + " " + this.sex + " conf info:" + this.confData + ", user_info:" + userMapper.selectById(1L);
+        return "hello youzan !" + this.user + " " + this.sex + " conf info:" + this.confData + ", user_info:" + userMapperWithoutXml.selectById(1L);
     }
 
 
