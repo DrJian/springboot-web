@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +18,14 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan(basePackages = "com.hongjian.springbootweb.dal.mapper",
-sqlSessionFactoryRef = "sqlSessionFactory")
+        sqlSessionFactoryRef = "sqlSessionFactory")
 public class HongJianDataSourceConfiguration {
 
     @Resource
     private DataSourceProperties dataSourceProperties;
+
+    @Resource
+    private MybatisProperties mybatisProperties;
 
     @Bean
     public DataSource dataSource() {
@@ -38,6 +42,8 @@ public class HongJianDataSourceConfiguration {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
         return sqlSessionFactoryBean.getObject();
     }
+
 }
