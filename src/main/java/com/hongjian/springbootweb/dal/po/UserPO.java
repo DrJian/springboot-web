@@ -1,4 +1,4 @@
-package com.hongjian.springbootweb.dal;
+package com.hongjian.springbootweb.dal.po;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class UserPO {
     /**
      * 主键id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 姓名
@@ -21,7 +21,7 @@ public class UserPO {
     /**
      * 性别
      */
-    private String sex;
+    private String sexType;
 
     /**
      * 你懂得
