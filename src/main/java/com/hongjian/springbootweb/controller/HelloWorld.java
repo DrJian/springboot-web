@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @RestController
 public class HelloWorld {
 
-    @Value("${user}")
+    @Value("${user_name}")
     private String user;
 
     @Value("${sex}")
@@ -33,7 +33,7 @@ public class HelloWorld {
 
     @RequestMapping("/hello")
     public String hello() {
-        return "hello youzan !" + this.user + " " + this.sex + " conf info:" + this.confData + ", user_info:" + userMapperWithoutXml.selectById(1L);
+        return "hello youzan !" + user + " " + sex + " conf info:" + confData + ", user_info:" + userMapper.selectById(1L);
     }
 
 
